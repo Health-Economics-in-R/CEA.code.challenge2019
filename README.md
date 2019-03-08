@@ -22,7 +22,7 @@ the day for the best submission, judged accounting for
 
 There is no single right answer to the challenges. We are not primarily
 interested in the values of the solutions or indeed the problem per-se.
-We are really interested in how the problme is tackled in code. That is,
+We are really interested in how the problem is tackled in code. That is,
 how the code is structured, what data structures are used and how they
 are handled. The decision of the judges is final :)
 

@@ -5,10 +5,10 @@
 
 #### 1\. Simple decision tree
 
-Example taken from Hazen (2014). Competing cance and AIDS risks decision
-tree. Assume discrete time of single years. An individual starts in the
-`Well` state. They can transition into `Dead`, `Cancer & AIDS`,
-`Cancer`, `AIDS` or remain in the `Well` state.
+Example taken from Hazen (2014). Competing cancer and AIDS risks
+decision tree. Assume discrete time of single years. An individual
+starts in the `Well` state. They can transition into `Dead`, `Cancer &
+AIDS`, `Cancer`, `AIDS` or remain in the `Well` state.
 
 Event probabilities are
 
