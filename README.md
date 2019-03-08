@@ -16,10 +16,9 @@ to provide something for the more advanced R user to get their teeth
 into in advance of the workshop itself. An award will be presented on
 the day for the best submission, judged accounting for
 
-  - Correctness
+  - Giving the right answer
   - Readability and clarity
-  - Simplicity/cleanness
-  - Succinctness
+  - Simplicity and “cleanness”
 
 There is no single right answer to the challenges. We are not primarily
 interested in the values of the solutions or indeed the problem per-se.
@@ -31,17 +30,19 @@ are handled. The decision of the judges is final :)
 
 The challenge has an overarching problem which is then split into
 smaller challenges. Hopefully, it’ll be good fun if not a little work.
-you can also look through the alternative version provided by others and
-learn something new, about different ways of approaching and solving
+You can also look through the alternative versions provided by others
+and learn something new, about different ways of approaching and solving
 problems.
 
 Everyone who wants to can have push access to this repository, so a
 little structure is require to avoid conflicts.
 
-Each task goes into a directory called **task** followed by a **two
-digit number**. Within each directory all files that you create should
-be prefixed with you name or GitHub name. Consider using a directory if
-you need lots of files. If you can’t make progress with a task then try
-your hand at another.
+Each question goes into a directory called **question** followed by a
+**two digit number**. Within each directory all files that you create
+should be prefixed with your name or GitHub name. Consider using a
+directory if you need lots of files. If you can’t make progress with a
+task then try your hand at another.
 
 ### Resources
+
+<TODO>

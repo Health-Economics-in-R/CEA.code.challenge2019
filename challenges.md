@@ -5,10 +5,10 @@
 
 #### 1\. Simple decision tree
 
-Taken from [ref](Hazen). Competing cance and AIDS risks decision tree.
-Assume discrete time of single years. An individual starts in the `Well`
-state. They can transition into `Dead`, `Cancer & AIDS`, `Cancer`,
-`AIDS` or remain in the `Well` state.
+Example taken from Hazen (2014). Competing cance and AIDS risks decision
+tree. Assume discrete time of single years. An individual starts in the
+`Well` state. They can transition into `Dead`, `Cancer & AIDS`,
+`Cancer`, `AIDS` or remain in the `Well` state.
 
 Event probabilities are
 
@@ -57,14 +57,15 @@ We can rearrange the Markov-cycle tree to closer resemble to Markov
 model by collapsing the branches into a single cycle and simply
 combining the probabilities.
 
-<img src="figs/one_cycle_markov_cycle_tree.png" width="65%" />
+<img src="figs/onecycle_markovcycletree.png" width="65%" />
 
 #### 6\. Roll back Markov-cycle tree
 
 We can calculate the mean QALYs using the markov-cycle tree
 representation without calculating the cumulative proportion of time of
 patient cycles in each health state. This is done by rolling back using
-the recursive equation (value iteration):
+the recursive equation ([value
+iteration](https://en.wikipedia.org/wiki/Markov_decision_process#Value_iteration)):
 
   
 ![
@@ -110,3 +111,17 @@ V(S) = \\frac{R(i)}{\\sum_j \\lambda_j} + \\sum_j p_j V(S_j)
   - `Dead other`: ![\\mu\_0
     = 0.014191](https://latex.codecogs.com/png.latex?%5Cmu_0%20%3D%200.014191
     "\\mu_0 = 0.014191")/year
+
+### References
+
+<div id="refs" class="references">
+
+<div id="ref-Hazen2014">
+
+Hazen, Gordon B. 2014. “Stochastic Trees : A New Technique for Temporal
+Medical Decision Modeling,” no. August 1992.
+<https://doi.org/10.1177/0272989X9201200302>.
+
+</div>
+
+</div>

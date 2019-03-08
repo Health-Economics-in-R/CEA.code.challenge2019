@@ -1,9 +1,10 @@
 ---
 output:
-  pdf_document: default
-  html_document: default
+  #pdf_document: default
+  #html_document: default
   github_document:
     pandoc_args: --webtex
+bibliography: bibliography.bib
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -21,7 +22,7 @@ knitr::opts_chunk$set(
 
 #### 1. Simple decision tree
 
-Taken from [ref](Hazen).
+Example taken from @Hazen2014.
 Competing cance and AIDS risks decision tree.
 Assume discrete time of single years.
 An individual starts in the `Well` state.
@@ -83,14 +84,14 @@ We can rearrange the Markov-cycle tree to closer resemble to Markov model by col
 
 ```{r echo=FALSE, out.width="65%"}
 
-include_graphics("figs/one_cycle_markov_cycle_tree.png")
+include_graphics("figs/onecycle_markovcycletree.png")
 ```
 
 
 #### 6. Roll back Markov-cycle tree
 
 We can calculate the mean QALYs using the markov-cycle tree representation without calculating the cumulative proportion of time of patient cycles in each health state.
-This is done by rolling back using the recursive equation (value iteration):
+This is done by rolling back using the recursive equation ([value iteration](https://en.wikipedia.org/wiki/Markov_decision_process#Value_iteration)):
 
 $$
 V_n(i) = R(i) + \sum_j p_{ij} V_{n-1}(j)
@@ -122,4 +123,4 @@ include_graphics("figs/stochastic_tree.png")
 * `Dead from AIDS`: $\mu_a = 0.9970$/year
 * `Dead other`: $\mu_0 = 0.014191$/year
 
-
+### References
