@@ -1,0 +1,125 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+  github_document:
+    pandoc_args: --webtex
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+## Code Challenges
+
+#### 1. Simple decision tree
+
+Taken from [ref](Hazen).
+Competing cance and AIDS risks decision tree.
+Assume discrete time of single years.
+An individual starts in the `Well` state.
+They can transition into `Dead`, `Cancer & AIDS`, `Cancer`, `AIDS` or remain in the `Well` state.
+
+Event probabilities are
+
+* $\delta_0 = 1.182 \times 10^{-3}$: Die from other causes
+* $\delta_c = 0.025$: Die from recurent prostate cancer
+* $\delta_a = 0.080$: Die from AIDS
+* $\beta_c = 0.0027$: Cancer recurs
+* $\beta_a = 0.0083$: Develop AIDS
+
+#### 2. Markov-cycle tree
+
+```{r echo=FALSE, out.width="75%"}
+
+suppressPackageStartupMessages(library(knitr))
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(png))
+
+include_graphics("figs/markov_cycle_tree.png")
+```
+
+
+#### 3. Discrete-time Markov model
+
+
+```{r, echo=FALSE, out.width="75%"}
+suppressPackageStartupMessages(library(heemod))
+suppressPackageStartupMessages(library(diagram))
+
+mat_dim <- define_transition(
+  state_names = c('Well', 'Cancer', 'Cancer &\n AIDS', "AIDS"),
+  a,b,c,d, 
+  0,e,f,0,
+  0,0,g,0,
+  0,0,h,i)
+
+plot(mat_dim)
+```
+
+##### Calculate mean QALYs
+
+Calculate cumulative proportion of patient cycles in each state and take product with health utilities for each respectively.
+
+Define the state utilities $R(\cdot)$:
+
+* `Well`: 1.0
+* `Cancer`: 0.60
+* `AIDS`: 0.50
+* `Cancer & AIDS`: 0.30
+* `Dead`: 0
+
+
+#### 4. One-cycle Markov-cycle tree
+
+We can rearrange the Markov-cycle tree to closer resemble to Markov model by collapsing the branches into a single cycle and simply combining the probabilities.
+
+```{r echo=FALSE, out.width="65%"}
+
+include_graphics("figs/one_cycle_markov_cycle_tree.png")
+```
+
+
+#### 6. Roll back Markov-cycle tree
+
+We can calculate the mean QALYs using the markov-cycle tree representation without calculating the cumulative proportion of time of patient cycles in each health state.
+This is done by rolling back using the recursive equation (value iteration):
+
+$$
+V_n(i) = R(i) + \sum_j p_{ij} V_{n-1}(j)
+$$
+
+
+#### 5. Roll back stochastic tree
+
+So far we have only considered discrete time.
+The Markov-cycle tree representation can be extended to continuous time as a _stochastic tree_.
+Probabilities are now replaced by rates.
+This change is represented by zigzag lines in the diagrams.
+This is clearly a more compact representation.
+
+We can calculate mean QALY in an analogous way to the discrete-time case by rolling back using the recursive equation:
+
+$$
+V(S) = \frac{R(i)}{\sum_j \lambda_j} + \sum_j p_j V(S_j)
+$$
+
+```{r echo=FALSE, out.width="75%"}
+
+include_graphics("figs/stochastic_tree.png")
+```
+
+* `Cancer`: $\lambda_c = 0.03250$/year
+* `AIDS`: $\lambda_a = 0.10$/year
+* `Dead from Cancer`: $\mu_c = 0.3081$/year
+* `Dead from AIDS`: $\mu_a = 0.9970$/year
+* `Dead other`: $\mu_0 = 0.014191$/year
+
+
