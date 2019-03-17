@@ -26,6 +26,11 @@ We are really interested in how the problem is tackled in code. That is,
 how the code is structured, what data structures are used and how they
 are handled. The decision of the judges is final :)
 
+We will provide some ‘model solutions’ to the challenges following the
+workshop. These will not be the ‘perfect’ solutions and we well
+anticipate that participants’ submitted code will demonstrate superior
+ability\!
+
 ### Content
 
 The challenge has an overarching problem which is then split into
@@ -37,12 +42,8 @@ problems.
 Everyone who wants to can have push access to this repository, so a
 little structure is require to avoid conflicts.
 
-Each question goes into a directory called **question** followed by a
-**two digit number**. Within each directory all files that you create
-should be prefixed with your name or GitHub name. Consider using a
-directory if you need lots of files. If you can’t make progress with a
-task then try your hand at another.
-
-### Resources
-
-<TODO>
+Each challenge question goes into a directory called **C\#\#** where
+**\#\#** is a **two digit number**. Within each directory all files that
+you create should be prefixed with your name or GitHub name. Consider
+using a directory if you need lots of files. If you can’t make progress
+with a task then try your hand at another.
