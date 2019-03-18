@@ -8,8 +8,9 @@ participants in the [R for trial & model-based cost-effectiveness
 analysis
 workshop](http://www.statistica.it/gianluca/teaching/r-hta-workshop/2019/)
 taking place 9 July 2019 at University College London. See the
-associated [GitHub repo](https://github.com/CEA.code.challenge) for more
-details.
+associated [GitHub
+repo](https://github.com/Health-Economics-in-R/CEA.code.challenge2019)
+for more details.
 
 #### 1\. A simple decision tree
 
