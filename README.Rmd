@@ -33,7 +33,7 @@ We will provide some 'model solutions' to the challenges following the workshop.
 These will not be the 'perfect' solutions and we well anticipate that participants' submitted code will demonstrate superior ability!
 
 ### Content
-The challenges can be found [here](https://github.com/Health-Economics-in-R/CEA.code.challenge2019/blob/master/challenges.md).
+The challenges can be found [here](http://htmlpreview.github.io/?https://github.com/Health-Economics-in-R/CEA.code.challenge2019/blob/master/challenges.html).
 The challenge has an overarching problem which is then split into smaller challenges. Hopefully, it'll be good fun if not a little work.
 You can also look through the alternative versions provided by others and learn something new, about different ways of approaching and solving problems.
 

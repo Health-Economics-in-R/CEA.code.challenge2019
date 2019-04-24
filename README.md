@@ -34,7 +34,7 @@ ability\!
 ### Content
 
 The challenges can be found
-[here](https://github.com/Health-Economics-in-R/CEA.code.challenge2019/blob/master/challenges.md).
+[here](http://htmlpreview.github.io/?https://github.com/Health-Economics-in-R/CEA.code.challenge2019/blob/master/challenges.html).
 The challenge has an overarching problem which is then split into
 smaller challenges. Hopefully, it’ll be good fun if not a little work.
 You can also look through the alternative versions provided by others
