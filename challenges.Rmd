@@ -3,7 +3,7 @@ output:
   #github_document:
     #pandoc_args: --webtex
   # html_document: default
-  md_document: default
+  # md_document: default
   pdf_document: default
 bibliography: bibliography.bib
 ---
@@ -84,7 +84,7 @@ C2. Extend the model of C1 for multiple cycles and thus create a Markov-cycle tr
 
 #### 3. One-cycle Markov-cycle tree {#C3}
 
-We can rearrange the Markov-cycle tree to closer resemble to Markov model by collapsing the branches into a single cycle and simply combining the probabilities.
+We can rearrange the Markov-cycle tree to closer resemble a Markov model by collapsing the branches into a single cycle and simply combining the probabilities.
 
 ```{r echo=FALSE, out.width="65%"}
 
@@ -96,7 +96,7 @@ include_graphics("figs/onecycle_markovcycletree.png")
 div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
 </style>
 <div class = "blue">
-C3. Modify the model of C2 to create a One-cycle Markov-cycle tree.
+C3. Modify the model of C2 to create a one-cycle Markov-cycle tree.
 </div>
 
 <br><br>
@@ -171,7 +171,7 @@ C6. Calculate the mean QALYs using the one-cycle Markov-cycle tree and value ite
 
 <br><br>
 
-#### C7 (BONUS CHALLENGE): Roll back stochastic tree {#C7}
+#### 7. (BONUS CHALLENGE): Roll back stochastic tree {#C7}
 
 So far we have only considered discrete time.
 The Markov-cycle tree representation can be extended to continuous time as a _stochastic tree_ 
