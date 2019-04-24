@@ -1,13 +1,12 @@
 ---
 output:
-  github_document:
-    pandoc_args: --webtex
-  #html_document: default
-  #pdf_document: default
+  #github_document:
+    #pandoc_args: --webtex
+  html_document: default
+  pdf_document: default
 bibliography: bibliography.bib
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -23,8 +22,11 @@ knitr::opts_chunk$set(
 The following questions are for the virtual code challenge for participants in the [R for trial & model-based cost-effectiveness analysis workshop](http://www.statistica.it/gianluca/teaching/r-hta-workshop/2019/) taking place 9 July 2019 at University College London.
 See the associated [GitHub repo](https://github.com/Health-Economics-in-R/CEA.code.challenge2019) for more details.
 
+Jump to challenge here: [C1](#C1), [C2](#C2), [C3](#C3), [C4](#C4), [C5](#C5), [C6](#C6), [C7](#C7).
 
-#### 1. A simple decision tree
+<br><br>
+
+#### 1. A simple decision tree {#C1}
 
 This example is taken from @Hazen2014.
 The problem is concerned with a competing risk cancer and AIDS decision tree.
@@ -40,9 +42,17 @@ Event probabilities are
 * $\beta_c = 0.0027$: Cancer recurs
 * $\beta_a = 0.0083$: Develop AIDS
 
-##### _C1. Define a (single year) decision tree._
+<br>
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
+</style>
+<div class = "blue">
+C1. Define a (single year) decision tree.
+</div>
 
-#### 2. Markov-cycle tree
+<br><br>
+
+#### 2. Markov-cycle tree {#C2}
 
 A Markov-cycle tree was introduced by Hollenberg and is a representation of a Markov process in which the possible events taking place during each cycle are represented by a probability tree.
 This is one way of simplifying determining probabilities from multiple paths.
@@ -58,12 +68,20 @@ suppressPackageStartupMessages(library(png))
 include_graphics("figs/markov_cycle_tree.png")
 ```
 
+
 The terminal state are now root or source states, meaning the process returns to the left hand side to be repeated.
 
-##### _C2. Extend the model of C1 for multiple cycles and thus create a Markov-cycle tree._
+<br>
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
+</style>
+<div class = "blue">
+C2. Extend the model of C1 for multiple cycles and thus create a Markov-cycle tree.
+</div>
 
+<br><br>
 
-#### 3. One-cycle Markov-cycle tree
+#### 3. One-cycle Markov-cycle tree {#C3}
 
 We can rearrange the Markov-cycle tree to closer resemble to Markov model by collapsing the branches into a single cycle and simply combining the probabilities.
 
@@ -72,11 +90,19 @@ We can rearrange the Markov-cycle tree to closer resemble to Markov model by col
 include_graphics("figs/onecycle_markovcycletree.png")
 ```
 
-##### _C3. Modify the model of C2 to create a One-cycle Markov-cycle tree._
+<br>
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
+</style>
+<div class = "blue">
+C3. Modify the model of C2 to create a One-cycle Markov-cycle tree.
+</div>
 
-#### 4. Discrete-time Markov model
+<br><br>
 
-Clearly, the Markov-cycle tree can also be represented as a discrete-type Markov model.
+#### 4. Discrete-time Markov model {#C4}
+
+Clearly, the Markov-cycle tree can also be represented as a discrete-time Markov model.
 The transition probabilities can be calculated by combining relevant path probabilities from the decision tree as done for the one-cycle Markov-cycle tree.
 The model is shown below (note that death is not shows for simplicity).
 
@@ -94,10 +120,17 @@ mat_dim <- define_transition(
 plot(mat_dim)
 ```
 
-##### _C4. Create the equivalent discrete-time Markov model._
+<br>
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
+</style>
+<div class = "blue">
+C4. Create the equivalent discrete-time Markov model.
+</div>
 
+<br><br>
 
-#### 5. Calculate mean QALYs
+#### 5. Calculate mean QALYs {#C5}
 
 Define the state utilities:
 
@@ -107,10 +140,17 @@ Define the state utilities:
 * `Cancer & AIDS`: $R_{ca}=$ 0.30
 * `Dead`: $R_d=$ 0
 
-##### _C5. Calculate cumulative proportion of patient cycles in each state and take product with health utilities for each respectively to obtain expected QALYs._
+<br>
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
+</style>
+<div class = "blue">
+C5. Calculate cumulative proportion of patient cycles in each state and take product with health utilities for each respectively to obtain expected QALYs.
+</div>
 
+<br><br>
 
-#### 6. Roll back Markov-cycle tree
+#### 6. Roll back Markov-cycle tree {#C6}
 
 A neat strength is that we can calculate the mean QALYs using the one-cycle Markov-cycle tree representation without calculating the cumulative proportion of time of patient cycles in each health state.
 This is done by rolling back using the recursive equation ([value iteration](https://en.wikipedia.org/wiki/Markov_decision_process#Value_iteration)):
@@ -120,10 +160,17 @@ V_n(i) = R(i) + \sum_j p_{ij} V_{n-1}(j)
 $$
 where $V_n(i)$ are the values at node $i$ at step $n$, in our case the expected QALYs.
 
-##### _C6. Calculate the mean QALYs using the one-cycle Markov-cycle tree and value iteration._
+<br>
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
+</style>
+<div class = "blue">
+C6. Calculate the mean QALYs using the one-cycle Markov-cycle tree and value iteration.
+</div>
 
+<br><br>
 
-#### C7 (BONUS CHALLENGE): Roll back stochastic tree
+#### C7 (BONUS CHALLENGE): Roll back stochastic tree {#C7}
 
 So far we have only considered discrete time.
 The Markov-cycle tree representation can be extended to continuous time as a _stochastic tree_ 
@@ -140,7 +187,6 @@ $$
 The new model diagram is given below.
 
 ```{r echo=FALSE, out.width="75%"}
-
 include_graphics("figs/stochastic_tree.png")
 ```
 
@@ -152,6 +198,34 @@ The rates for state transitions are:
 * `Dead from AIDS`: $\mu_a = 0.9970$/year
 * `Dead other`: $\mu_o = 0.014191$/year
 
-##### _C7. Create the stochastic tree model and calculate the mean QALYs using value iteration._
+<br>
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
+</style>
+<div class = "blue">
+C7. Create the stochastic tree model and calculate the mean QALYs using value iteration.
+</div>
+
+<br><br>
+
+
+&nbsp;
+<hr />
+<p style="text-align: center;">Written by <a href="https://github.com/n8thangreen/">Nathan Green</a></p>
+<p style="text-align: center;"><span style="color: #808080;"><em>nathan.green@imperial.ac.uk</em></span></p>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+    <a href="https://github.com/n8thangreen/" class="fa fa-github"></a>
+</p>
+
+&nbsp;
 
 ### References
+
+
+
+

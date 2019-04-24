@@ -1,6 +1,4 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 ## Code Challenges
 
 The following questions are for the virtual code challenge for
@@ -53,8 +51,7 @@ given below.
 <img src="figs/markov_cycle_tree.png" width="75%" />
 
 The terminal state are now root or source states, meaning the process
-returns to the left hand side to be
-repeated.
+returns to the left hand side to be repeated.
 
 ##### *C2. Extend the model of C1 for multiple cycles and thus create a Markov-cycle tree.*
 
@@ -62,8 +59,7 @@ repeated.
 
 We can rearrange the Markov-cycle tree to closer resemble to Markov
 model by collapsing the branches into a single cycle and simply
-combining the
-probabilities.
+combining the probabilities.
 
 <img src="figs/onecycle_markovcycletree.png" width="65%" />
 
@@ -72,7 +68,7 @@ probabilities.
 #### 4\. Discrete-time Markov model
 
 Clearly, the Markov-cycle tree can also be represented as a
-discrete-type Markov model. The transition probabilities can be
+discrete-time Markov model. The transition probabilities can be
 calculated by combining relevant path probabilities from the decision
 tree as done for the one-cycle Markov-cycle tree. The model is shown
 below (note that death is not shows for simplicity).
@@ -118,8 +114,7 @@ where ![V\_n(i)](https://latex.codecogs.com/png.latex?V_n%28i%29
 "V_n(i)") are the values at node
 ![i](https://latex.codecogs.com/png.latex?i "i") at step
 ![n](https://latex.codecogs.com/png.latex?n "n"), in our case the
-expected
-QALYs.
+expected QALYs.
 
 ##### *C6. Calculate the mean QALYs using the one-cycle Markov-cycle tree and value iteration.*
 
