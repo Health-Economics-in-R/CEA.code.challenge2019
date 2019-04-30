@@ -44,3 +44,7 @@ Within each directory all files that you create should be prefixed with your nam
 Consider using a directory if you need lots of files.
 If you can't make progress with a task then try your hand at another.
 
+#### Measuring computational speed
+We suggest measuring your code performance using [microbenchmarking](http://adv-r.had.co.nz/Performance.html)
+and the package (not surprisingly) [microbenchmark](https://cran.r-project.org/web/packages/microbenchmark/).
+In this way we can compare running time even for things that only take a very small amount of time.
