@@ -3,7 +3,7 @@ output:
   #github_document:
     #pandoc_args: --webtex
   html_document: default
-  ## md_document: default
+  # md_document: default
   pdf_document: default
 bibliography: bibliography.bib
 ---
@@ -35,13 +35,21 @@ We will assume discrete time of single years.
 An individual starts in the `Well` state.
 They can transition into `Dead`, `Cancer & AIDS`, `Cancer`, `AIDS` or remain in the `Well` state.
 
-Event probabilities are
+Define the event probabilities:
 
-* $\delta_0 = 1.182 \times 10^{-3}$: Die from other causes
-* $\delta_c = 0.025$: Die from recurent prostate cancer
-* $\delta_a = 0.080$: Die from AIDS
-* $\beta_c = 0.0027$: Cancer recurs
-* $\beta_a = 0.0083$: Develop AIDS
+* Die from other causes: $\delta_0 = 1.182 \times 10^{-3}$
+* Die from recurent prostate cancer: $\delta_c = 0.025$
+* Die from AIDS: $\delta_a = 0.080$
+* Cancer recurs: $\beta_c = 0.0027$
+* Develop AIDS: $\beta_a = 0.0083$
+
+Define the state utilities:
+
+* `Well`: $R_w=$ 1.0
+* `Cancer`: $R_c=$ 0.60
+* `AIDS`: $R_a=$ 0.50
+* `Cancer & AIDS`: $R_{ca}=$ 0.30
+* `Dead`: $R_d=$ 0
 
 <br>
 <style>
@@ -77,17 +85,24 @@ The terminal state are now root or source states, meaning the process returns to
 div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
 </style>
 <div class = "blue">
-C2. Extend the model of C1 for multiple cycles and thus create a Markov-cycle tree.
+C2. Extend the model of C1 for multiple cycles and thus create a Markov-cycle tree and calculate the mean quality-adjusted durations.
 </div>
-
 <br><br>
 
 #### 3. One-cycle Markov-cycle tree {#C3}
 
 We can rearrange the Markov-cycle tree to closer resemble a Markov model by collapsing the branches into a single cycle and simply combining the probabilities.
 
-```{r echo=FALSE, out.width="65%"}
+In the below figure
 
+* The numbers above each branch are the one-cycle transition probabilities
+* The numbers pointing at nodes and names are the mean quality-adjusted durations accrued through $n$ cycles.
+* The numbers in brackets are the mean quality-adjusted durations at the start of the cycle.
+
+So for the below figure, the right-most numbers are the mean quality-adjusted durations for cycle 2, the left-most numbers are the mean quality-adjusted durations for cycle 3 and the numbers in brackets are the mean quality-adjusted durations for cycle 1.
+@Hazen2014 steps through this calculation in detail.
+
+```{r echo=FALSE, out.width="65%"}
 include_graphics("figs/onecycle_markovcycletree.png")
 ```
 
@@ -98,7 +113,6 @@ div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
 <div class = "blue">
 C3. Modify the model of C2 to create a one-cycle Markov-cycle tree.
 </div>
-
 <br><br>
 
 #### 4. Discrete-time Markov model {#C4}
@@ -126,20 +140,13 @@ plot(mat_dim)
 div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
 </style>
 <div class = "blue">
-C4. Create the equivalent discrete-time Markov model.
+C4. Create the equivalent discrete-time Markov model to the one-cycle Markov-cycle tree.
 </div>
-
 <br><br>
 
 #### 5. Calculate mean QALYs {#C5}
 
-Define the state utilities:
-
-* `Well`: $R_w=$ 1.0
-* `Cancer`: $R_c=$ 0.60
-* `AIDS`: $R_a=$ 0.50
-* `Cancer & AIDS`: $R_{ca}=$ 0.30
-* `Dead`: $R_d=$ 0
+Now we will use the QALYs provided in C2 in the discrete-time Markov model.
 
 <br>
 <style>
@@ -148,7 +155,6 @@ div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
 <div class = "blue">
 C5. Calculate cumulative proportion of patient cycles in each state and take product with health utilities for each respectively to obtain expected QALYs.
 </div>
-
 <br><br>
 
 #### 6. Roll back Markov-cycle tree {#C6}
@@ -168,7 +174,6 @@ div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
 <div class = "blue">
 C6. Calculate the mean QALYs using the one-cycle Markov-cycle tree and value iteration.
 </div>
-
 <br><br>
 
 #### 7. (BONUS CHALLENGE): Roll back stochastic tree {#C7}
@@ -206,7 +211,6 @@ div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
 <div class = "blue">
 C7. Create the stochastic tree model and calculate the mean QALYs using value iteration.
 </div>
-
 <br><br>
 
 
