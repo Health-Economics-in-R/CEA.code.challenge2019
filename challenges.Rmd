@@ -4,7 +4,7 @@ output:
     #pandoc_args: --webtex
   html_document: default
   # md_document: default
-  pdf_document: default
+  #pdf_document: default
 bibliography: bibliography.bib
 ---
 
@@ -20,10 +20,10 @@ knitr::opts_chunk$set(
 
 ## Code Challenges
 
-The following questions are for the virtual code challenge for participants in the [R for trial & model-based cost-effectiveness analysis workshop](http://www.statistica.it/gianluca/teaching/r-hta-workshop/2019/) taking place 9 July 2019 at University College London.
+The following exercises are for the virtual code challenge for participants in the [R for trial & model-based cost-effectiveness analysis workshop](http://www.statistica.it/gianluca/teaching/r-hta-workshop/2019/) taking place 9th July 2019 at University College London.
 See the associated [GitHub repo](https://github.com/Health-Economics-in-R/CEA.code.challenge2019) for more details.
 
-Jump to challenge here: [C1](#C1), [C2](#C2), [C3](#C3), [C4](#C4), [C5](#C5), [C6](#C6), [C7](#C7).
+Jump to challenge here: [C1](#C1), [C2](#C2), [C3](#C3), [C4](#C4), [C5](#C5), [C6](#C6).
 
 <br><br>
 
@@ -35,14 +35,15 @@ We will assume discrete time of single years.
 An individual starts in the `Well` state.
 They can transition into `Dead`, `Cancer & AIDS`, `Cancer`, `AIDS` or remain in the `Well` state.
 
-Define the event probabilities:
+Define the transition probabilities:
 
-* Die from other causes: $\delta_0 = 1.182 \times 10^{-3}$
+* Die from other causes: $\delta_0 = 0.001182$
 * Die from recurent prostate cancer: $\delta_c = 0.025$
 * Die from AIDS: $\delta_a = 0.080$
 * Cancer recurs: $\beta_c = 0.0027$
 * Develop AIDS: $\beta_a = 0.0083$
 
+Each state has an associated utility or benefit (quality factor in @Hazen2014) accrued by spending one cycle in each state.
 Define the state utilities:
 
 * `Well`: $R_w=$ 1.0
@@ -51,22 +52,24 @@ Define the state utilities:
 * `Cancer & AIDS`: $R_{ca}=$ 0.30
 * `Dead`: $R_d=$ 0
 
+Note that we will not include discounting.
+
 <br>
 <style>
 div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
 </style>
 <div class = "blue">
-C1. Define a (single year) decision tree.
+C1. Define a (single year) decision tree and calculate the expected quality-adjusted value.
 </div>
 
 <br><br>
 
 #### 2. Markov-cycle tree {#C2}
 
-A Markov-cycle tree was introduced by Hollenberg and is a representation of a Markov process in which the possible events taking place during each cycle are represented by a probability tree.
+A Markov-cycle tree was introduced by @Hollenberg1984 and is a representation of a Markov process in which the possible events taking place during each cycle are represented by a probability tree.
 This is one way of simplifying determining probabilities from multiple paths.
 
-The diagram for the Markov-cycle tree of the example in @Hazen2014 is given below.
+The diagram for the Markov-cycle tree of the example in @Hazen2014 is given below (note that the order of the states is different on the left-hand side and right-hand side).
 
 ```{r echo=FALSE, out.width="75%"}
 
@@ -78,14 +81,14 @@ include_graphics("figs/markov_cycle_tree.png")
 ```
 
 
-The terminal state are now root or source states, meaning the process returns to the left hand side to be repeated.
+The terminal state are now root or source states, meaning the process returns to the left-hand side to be repeated.
 
 <br>
 <style>
 div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
 </style>
 <div class = "blue">
-C2. Extend the model of C1 for multiple cycles and thus create a Markov-cycle tree and calculate the mean quality-adjusted durations.
+C2. Extend the model of C1 for multiple cycles and thus create a Markov-cycle tree. Calculate the mean quality-adjusted lifetime of 90.473.
 </div>
 <br><br>
 
@@ -111,7 +114,7 @@ include_graphics("figs/onecycle_markovcycletree.png")
 div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
 </style>
 <div class = "blue">
-C3. Modify the model of C2 to create a one-cycle Markov-cycle tree.
+C3. Modify the model of C2 to create a one-cycle Markov-cycle tree. Calculate the mean quality-adjusted lifetime.
 </div>
 <br><br>
 
@@ -140,43 +143,30 @@ plot(mat_dim)
 div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
 </style>
 <div class = "blue">
-C4. Create the equivalent discrete-time Markov model to the one-cycle Markov-cycle tree.
+C4. Create the equivalent discrete-time Markov model to the one-cycle Markov-cycle tree. Calculate cumulative proportion of patient cycles in each state and take product with health utilities for each respectively to obtain the mean quality-adjusted lifetime.
 </div>
 <br><br>
 
-#### 5. Calculate mean QALYs {#C5}
+#### 5. Roll back Markov-cycle tree {#C5}
 
-Now we will use the QALYs provided in C2 in the discrete-time Markov model.
-
-<br>
-<style>
-div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
-</style>
-<div class = "blue">
-C5. Calculate cumulative proportion of patient cycles in each state and take product with health utilities for each respectively to obtain expected QALYs.
-</div>
-<br><br>
-
-#### 6. Roll back Markov-cycle tree {#C6}
-
-A neat strength is that we can calculate the mean QALYs using the one-cycle Markov-cycle tree representation without calculating the cumulative proportion of time of patient cycles in each health state.
+A neat strength is that we can calculate the mean quality-adjusted lifetime using the one-cycle Markov-cycle tree representation without calculating the cumulative proportion of time of patient cycles in each health state.
 This is done by rolling back using the recursive equation ([value iteration](https://en.wikipedia.org/wiki/Markov_decision_process#Value_iteration)):
 
 $$
 V_n(i) = R(i) + \sum_j p_{ij} V_{n-1}(j)
 $$
-where $V_n(i)$ are the values at node $i$ at step $n$, in our case the expected QALYs.
+where $V_n(i)$ are the values at node $i$ at step $n$, in our case the mean quality-adjusted lifetime.
 
 <br>
 <style>
 div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
 </style>
 <div class = "blue">
-C6. Calculate the mean QALYs using the one-cycle Markov-cycle tree and value iteration.
+C6. Calculate the mean quality-adjusted lifetime using the one-cycle Markov-cycle tree and value iteration.
 </div>
 <br><br>
 
-#### 7. (BONUS CHALLENGE): Roll back stochastic tree {#C7}
+#### 6. (BONUS CHALLENGE): Roll back stochastic tree {#C6}
 
 So far we have only considered discrete time.
 The Markov-cycle tree representation can be extended to continuous time as a _stochastic tree_ 
@@ -185,7 +175,7 @@ Probabilities are now replaced by rates.
 This change is represented by zigzag lines in the diagrams.
 This is clearly a more compact representation.
 
-We can calculate mean QALY in an analogous way to the discrete-time case by rolling back using the recursive equation:
+We can calculate mean quality-adjusted lifetime in an analogous way to the discrete-time case by rolling back using the recursive equation:
 
 $$
 V(S) = \frac{R(i)}{\sum_j \lambda_j} + \sum_j p_j V(S_j)
@@ -209,7 +199,7 @@ The rates for state transitions are:
 div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
 </style>
 <div class = "blue">
-C7. Create the stochastic tree model and calculate the mean QALYs using value iteration.
+C7. Create the stochastic tree model and calculate the mean quality-adjusted lifetime using value iteration.
 </div>
 <br><br>
 
