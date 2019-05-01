@@ -2,9 +2,9 @@
 output:
   #github_document:
     #pandoc_args: --webtex
-  html_document: default
+  #html_document: default
   # md_document: default
-  #pdf_document: default
+  pdf_document: default
 bibliography: bibliography.bib
 ---
 
