@@ -2,9 +2,9 @@
 output:
   #github_document:
     #pandoc_args: --webtex
-  #html_document: default
+  html_document: default
   # md_document: default
-  pdf_document: default
+  #pdf_document: default
 bibliography: bibliography.bib
 ---
 
@@ -162,7 +162,7 @@ where $V_n(i)$ are the values at node $i$ at step $n$, in our case the mean qual
 div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
 </style>
 <div class = "blue">
-C6. Calculate the mean quality-adjusted lifetime using the one-cycle Markov-cycle tree and value iteration.
+C5. Calculate the mean quality-adjusted lifetime using the one-cycle Markov-cycle tree and value iteration.
 </div>
 <br><br>
 
@@ -199,7 +199,7 @@ The rates for state transitions are:
 div.blue { background-color:#e6f0ff; border-radius: 2px; padding: 5px;}
 </style>
 <div class = "blue">
-C7. Create the stochastic tree model and calculate the mean quality-adjusted lifetime using value iteration.
+C6. Create the stochastic tree model and calculate the mean quality-adjusted lifetime using value iteration.
 </div>
 <br><br>
 
