@@ -17,14 +17,15 @@ into in advance of the workshop itself. An award will be presented on
 the day for the best submission, judged accounting for
 
   - Giving the right answer
-  - Readability and clarity
-  - Simplicity and “cleanness”
+  - Speed
+  - Readability, transparency and clarity
+  - Simplicity, elegance and “cleanness”
 
-There is no single right answer to the challenges. We are not primarily
-interested in the values of the solutions or indeed the problem per-se.
-We are really interested in how the problem is tackled in code. That is,
-how the code is structured, what data structures are used and how they
-are handled. The decision of the judges is final :)
+There is no single right way to answer the challenges. We are not
+primarily interested in the values of the solutions or indeed the
+problem per-se. We are really interested in how the problems are tackled
+in code. That is, how the code is structured, what data structures are
+used and how they are handled. The decision of the judges is final :)
 
 We will provide some ‘model solutions’ to the challenges following the
 workshop. These will not be the ‘perfect’ solutions and we well
@@ -41,14 +42,13 @@ You can also look through the alternative versions provided by others
 and learn something new, about different ways of approaching and solving
 problems.
 
-Everyone who wants to can have push access to this repository, so a
-little structure is require to avoid conflicts.
+### Submissions
 
-Each challenge question goes into a directory called **C\#\#** where
-**\#\#** is a **two digit number**. Within each directory all files that
-you create should be prefixed with your name or GitHub name. Consider
-using a directory if you need lots of files. If you can’t make progress
-with a task then try your hand at another.
+Participants should email their code solutions to
+<nathan.green@imperial.ac.uk> by **24th June 2019**. We are fairly
+flexible in how you would like to structure your submission. This could
+be as a package, project or a single .R file. In all cases include a
+`main.R` or `main.Rmd` file so we know where to start.
 
 #### Measuring computational speed
 
